@@ -377,7 +377,7 @@
                     <select id="attendanceSelect" name="entry.664653037" required class="w-full px-4 py-3 rounded-lg border border-morandi-borders focus:outline-none focus:ring-2 focus:ring-morandi-gold/50 bg-morandi-bg/40 text-sm">
                         <option value="" disabled selected>請選擇您的出席意願</option>
                         <option value="預計出席">預計出席</option>
-                        <option value="無法出席">無法出席，但獻上滿滿祝福</option>
+                        <option value="無法出席，但獻上滿滿祝福">無法出席，但獻上滿滿祝福</option>
                     </select>
                 </div>
 
@@ -397,7 +397,7 @@
                             飲食需求 <span class="font-en text-morandi-muted font-normal">DIETARY PREFERENCES</span>
                         </label>
                         <select name="entry.985449767" class="w-full px-4 py-3 rounded-lg border border-morandi-borders focus:outline-none focus:ring-2 focus:ring-morandi-gold/50 bg-morandi-bg/40 text-sm">
-                            <option value="" disabled selected>請選擇飲食需求</option>
+                            <option value="" selected>無特殊飲食需求（全桌葷食）</option>
                             <option value="全桌葷食">全桌葷食</option>
                             <option value="素食 1 位">素食 1 位</option>
                             <option value="素食 2 位">素食 2 位</option>
@@ -411,7 +411,7 @@
                             兒童椅需求 <span class="font-en text-morandi-muted font-normal">BABY SEATS</span>
                         </label>
                         <select name="entry.1022886529" class="w-full px-4 py-3 rounded-lg border border-morandi-borders focus:outline-none focus:ring-2 focus:ring-morandi-gold/50 bg-morandi-bg/40 text-sm">
-                            <option value="" disabled selected>請選擇兒童椅需求</option>
+                            <option value="" selected>不需要兒童椅</option>
                             <option value="不需要">不需要</option>
                             <option value="需要 1 張">需要 1 張</option>
                             <option value="需要 2 張">需要 2 張</option>
@@ -423,7 +423,7 @@
                 <!-- Field 8: Mailing Address / Line ID -->
                 <div>
                     <label class="block text-xs font-semibold text-morandi-text tracking-wider uppercase mb-2">
-                        喜帖寄送地址 / LINE ID <span class="font-en text-morandi-muted font-normal">ADDRESS / CONTACT</span>
+                        喜帖寄送地址  <span class="font-en text-morandi-muted font-normal">ADDRESS / CONTACT</span>
                     </label>
                     <input type="text" name="entry.923177340" value="" placeholder="如需實體喜帖請填寫寄送地址" class="w-full px-4 py-3 rounded-lg border border-morandi-borders focus:outline-none focus:ring-2 focus:ring-morandi-gold/50 bg-morandi-bg/40 text-sm">
                 </div>
@@ -488,7 +488,7 @@
             });
         });
 
-        // 2. Artistic Countdown Timer Logic (Cross-browser compatible date format)
+        // 2. Artistic Countdown Timer Logic
         const targetDate = new Date('2026/11/14 12:00:00').getTime();
 
         function updateCountdown() {
@@ -559,20 +559,14 @@
             }
 
             const currentCount = parseInt(attendeesInput.value, 10) || 0;
-            const conditionalInputs = conditionalFields.querySelectorAll('select, input');
 
             if (isAttending && currentCount > 0) {
                 conditionalFields.classList.remove('hidden');
-                // Enable inputs so they are sent in form submission
-                conditionalInputs.forEach(input => input.disabled = false);
             } else {
                 conditionalFields.classList.add('hidden');
-                // Disable inputs when hidden so they are NOT submitted to Google Form
-                conditionalInputs.forEach(input => input.disabled = true);
             }
         }
 
-        // Initialize form conditional fields state on load
         toggleConditionalFields();
 
         attendeesInput.addEventListener('input', toggleConditionalFields);
